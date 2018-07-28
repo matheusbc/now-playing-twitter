@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './app.css';
 import Geocoder from 'react-native-geocoding';
 import Header from './components/Header';
+import TweetForm from './components/TweetForm';
 
 Geocoder.init('AIzaSyCQM7O58Zdv9qGWWYF4cppIu2kofpV3olw'); // use a valid API key
 
@@ -22,7 +23,10 @@ export default class App extends Component {
     return (
       <div>
         {this.state.city ? (
-          <Header city={this.state.city} />
+            <div>
+                <Header city={this.state.city} />
+                <TweetForm />
+            </div>
         ) : (
           <h1>
             Loading... please wait!

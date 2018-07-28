@@ -1,8 +1,15 @@
-h1 {
-  color: green;
+body {
+
 }
 
-body {
-  text-align: center;
-  margin: auto;
+h1 {
+  margin: 0 5px;
+  font-size: 40pt;
+}
+
+h3 {
+  margin: 0 5px;
+  font-size: 18pt;
+  font-style: normal;
+  font-weight: normal;
 }

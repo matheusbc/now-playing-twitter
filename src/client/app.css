@@ -43,7 +43,7 @@ input {
   border-radius: 10px;
   padding: 10px;
   width: 1035px;
-  margin: 10px auto;
+  margin: 10px;
   display: block;
 }
 
@@ -61,15 +61,6 @@ input {
 .twitter-tweet {
   margin: 0;
   width: 100%;
-  /*position: static;*/
-  /*visibility: visible;*/
-  /*display: block;*/
-  /*transform: rotate(0deg);*/
-  /*max-width: 100%;*/
-  /*width: 1000px;*/
-  /*min-width: 220px;*/
-  /*margin-top: 10px;*/
-  /*margin-bottom: 10px;*/
 }
 
 .EmbeddedTweet {
@@ -126,7 +117,7 @@ blockquote.twitter-tweet a:focus {
 .body{margin:0;padding:0;background:0 0}
 a{outline:0;text-decoration:none}
 .body.rtl{direction:rtl}#widget{display:inline-block;white-space:nowrap;overflow:hidden;text-align:left}
-#count,.btn,.btn .label,.btn-o,.count-o{display:inline-block;vertical-align:top;zoom:1}
+#count,.btn,.btn .label,.btn-o,.count-o{display:inline-block;zoom:1}
 .btn-o{max-width:100%}
 .btn{position:relative;height:20px;box-sizing:border-box;padding:1px 8px 1px 6px;background-color:#1b95e0;color:#fff;border-radius:3px;font-weight:500;cursor:pointer}
 .rtl .btn{padding:1px 6px 1px 8px}
@@ -138,7 +129,7 @@ a{outline:0;text-decoration:none}
 .btn .label b{font-weight:500;white-space:nowrap}
 .rtl .btn .label{margin-right:3px}
 .rtl .btn .label b{display:inline-block;direction:ltr}
-.xl{font-size:13px;line-height:26px}
+.xl{font-size:15px;}
 .xl .btn{height:28px;border-radius:4px;padding:1px 10px 1px 9px}
 .rtl.xl .btn{padding:1px 9px 1px 10px}
 .xl .btn i{top:4px;height:18px;width:18px}

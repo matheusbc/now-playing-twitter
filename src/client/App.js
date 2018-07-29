@@ -5,7 +5,7 @@ import Header from './components/Header';
 import TweetForm from './components/TweetForm';
 import TweetBlock from './components/TweetBlock';
 
-Geocoder.init('AIzaSyCQM7O58Zdv9qGWWYF4cppIu2kofpV3olw'); // use a valid API key
+Geocoder.init('AIzaSyCQM7O58Zdv9qGWWYF4cppIu2kofpV3olw');
 
 export default class App extends Component {
   constructor(props) {
@@ -13,10 +13,9 @@ export default class App extends Component {
     this.state = {
       location: null,
       city: null,
-      videoId: '2g811Eo7K8U',
-      tweetId: '933354946111705097',
       tweets: []
     };
+    this.onTweet = this._onTweet.bind(this);
   }
 
   componentDidMount() {
@@ -29,15 +28,24 @@ export default class App extends Component {
         {this.state.city ? (
           <div>
             <Header city={this.state.city} />
-            <TweetForm />
-              {this.state.tweets.map(function(tweet, index) {
-                console.log(tweet);
-                  return <TweetBlock
-                      key={tweet.id_str}
-                      videoId='2g811Eo7K8U'
-                      tweetId={tweet.id_str}
-                  />
-              })}
+            <TweetForm onTweet={this.onTweet} />
+
+              {this.state.tweets.length === 0 ? (
+                  <h1>
+                      Nobody is #nowplaying youtube videos on your location.
+                  </h1>
+              ) : (
+                  this.state.tweets.map((tweet, index) => {
+                      const matches = tweet.text.match(/\bhttps?:\/\/\S+/gi);
+                      return (
+                          <TweetBlock
+                              key={tweet.id_str}
+                              videoId={matches[0]}
+                              tweetId={tweet.id_str}
+                          />
+                      );
+                  })
+              )}
           </div>
         ) : (
           <h1>
@@ -63,18 +71,33 @@ export default class App extends Component {
               });
             }
           }
+          if (this.state.city === null) {
+              this.setState({
+                  city: `${json.results[0].address_components[0].long_name}`
+              });
+          }
         })
         .catch(error => console.warn(error));
 
       this._searchTweets();
     }, (error) => {
-      console.log(error);
+      console.warn(error);
     }, { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 });
   }
 
   _searchTweets() {
     fetch(`/api/search/tweets?location=${this.state.location}`)
       .then(res => res.json())
-      .then(tweets => this.setState({ tweets: tweets.tweets.statuses }));
+      .then((tweets) => {
+        this.setState({ tweets: tweets.tweets.statuses });
+      });
   }
+
+    _onTweet = (e) => {
+        e.preventDefault();
+        setTimeout(function(){
+            this.setState({ tweets: [] });
+            this._searchTweets();
+        }.bind(this), 30000); // Wait 30 seconds to tweet propagate.
+    };
 }

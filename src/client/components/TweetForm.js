@@ -12,18 +12,17 @@ export default class TweetForm extends Component {
     };
     this.handleCommentChange = this._handleCommentChange.bind(this);
     this.handleVideoUrlChange = this._handleVideoUrlChange.bind(this);
+    this.onTweet = props.onTweet;
   }
 
   render() {
     return (
       <div className="form">
         <form>
-          <label>
-                        Video URL:
+          <label> Video URL:
             <input type="text" name="videoUrl" value={this.state.videoUrl} onChange={this.handleVideoUrlChange} />
           </label>
-          <label>
-                        Comment:
+          <label> Comment:
             <input type="text" name="comment" value={this.state.comment} onChange={this.handleCommentChange} />
           </label>
 
@@ -31,7 +30,7 @@ export default class TweetForm extends Component {
             <div className="body xl ready">
               <div id="widget">
                 <div className="btn-o">
-                  <a href={this.state.tweetUrl} className="btn" id="b">
+                  <a href={this.state.tweetUrl} className="btn" id="b" onClick={this.onTweet}>
                     <i />
                     <span className="label" id="l">Tweet to #nowplaying</span>
                   </a>

@@ -7,17 +7,22 @@ export default class TweetBlock extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      videoId: props.videoId,
+      videoId: '',
       videoName: null,
       tweetId: props.tweetId
     };
+    this.videoUrl = props.videoId;
     this.onReady = this._onReady.bind(this);
   }
 
   componentDidMount() {
-    // fetch('/api/getUsername')
-    //   .then(res => res.json())
-    //   .then(user => this.setState({ location: this.state.location }));
+    const url = `/api/unshortener/youtubetco?url=${this.videoUrl}`;
+    fetch(url)
+      .then(res => res.json())
+      .then((videoResponse) => {
+        this.setState({ videoId: videoResponse.videoId });
+        console.log(videoResponse.videoId);
+      });
   }
 
   _onReady(event) {
@@ -51,8 +56,8 @@ export default class TweetBlock extends Component {
           opts={opts}
           onReady={this.onReady}
         />
-        <div className="tweet-info" >
-          <TwitterTweetEmbed tweetId={this.state.tweetId} options={{cards: "hidden", conversation: "none"}} />
+        <div className="tweet-info">
+          <TwitterTweetEmbed tweetId={this.state.tweetId} options={{ cards: 'hidden', conversation: 'none' }} />
         </div>
       </div>
     );

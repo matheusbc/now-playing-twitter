@@ -2,6 +2,7 @@ body {
   margin: 0;
 }
 
+/* Header */
 h1 {
   margin: 5px 10px;
   font-size: 40pt;
@@ -14,6 +15,7 @@ h3 {
   font-weight: normal;
 }
 
+/* Tweet form */
 .form {
   background-color: lightgrey;
   padding: 20px 10px;
@@ -79,6 +81,7 @@ input {
   display: inline-block;
 }
 
+/* Tweet list */
 blockquote.twitter-tweet {
   display: inline-block;
   font-family: "Helvetica Neue", Roboto, "Segoe UI", Calibri, sans-serif;
@@ -113,7 +116,7 @@ blockquote.twitter-tweet a:focus {
   text-decoration: underline;
 }
 
-/* Twitter button */
+/* Twitter button (copied from twitter library) */
 .body{margin:0;padding:0;background:0 0}
 a{outline:0;text-decoration:none}
 .body.rtl{direction:rtl}#widget{display:inline-block;white-space:nowrap;overflow:hidden;text-align:left}

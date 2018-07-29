@@ -5,8 +5,10 @@ import Header from './components/Header';
 import TweetForm from './components/TweetForm';
 import TweetBlock from './components/TweetBlock';
 
+// Initialize the google geocoding library. Should pass a valid google API-Key as parameter.
 Geocoder.init('AIzaSyCQM7O58Zdv9qGWWYF4cppIu2kofpV3olw');
 
+// The main component that shows the main page.
 export default class App extends Component {
   constructor(props) {
     super(props);
@@ -19,7 +21,7 @@ export default class App extends Component {
   }
 
   componentDidMount() {
-    this._setLocation();
+    this._loadLocation();
   }
 
   render() {
@@ -56,7 +58,8 @@ export default class App extends Component {
     );
   }
 
-  _setLocation() {
+  // Loads the user location and the location city name.
+  _loadLocation() {
     navigator.geolocation.getCurrentPosition((position) => {
       this.setState({
         location: `${position.coords.latitude},${position.coords.longitude},100km`
@@ -85,6 +88,7 @@ export default class App extends Component {
     }, { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 });
   }
 
+  // Searches the last five #nowplaying tweets from near people, accordingly to the user location.
   _searchTweets() {
     fetch(`/api/search/tweets?location=${this.state.location}`)
       .then(res => res.json())
@@ -93,11 +97,12 @@ export default class App extends Component {
       });
   }
 
-    _onTweet = (e) => {
-        e.preventDefault();
-        setTimeout(function(){
-            this.setState({ tweets: [] });
-            this._searchTweets();
-        }.bind(this), 30000); // Wait 30 seconds to tweet propagate.
-    };
+  // Called on a new #nowplaying message is tweeted.
+  _onTweet = (e) => {
+    e.preventDefault();
+    setTimeout(function(){
+      this.setState({ tweets: [] });
+      this._searchTweets();
+    }.bind(this), 30000); // Wait 30 seconds as tweet propagate.
+  };
 }

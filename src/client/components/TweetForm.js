@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import '../app.css';
 
+// Component that shows the #nowplaying tweet form.
 export default class TweetForm extends Component {
   constructor(props) {
     super(props);
@@ -43,6 +44,7 @@ export default class TweetForm extends Component {
     );
   }
 
+  // Handles comment input changes. Set a new state with the comment and updates the tweet url.
   _handleCommentChange(event) {
     this.setState({ comment: event.target.value });
     const url = this.state.videoUrl !== '' ? `&url=${this.state.videoUrl}` : '';
@@ -50,6 +52,7 @@ export default class TweetForm extends Component {
     this.setState({ tweetUrl: this.tweetUrl + url + text });
   }
 
+  // Handles video url input changes. Set a new state with the video url and updates the tweet url.
   _handleVideoUrlChange(event) {
     this.setState({ videoUrl: event.target.value });
     const url = event.target.value !== '' ? `&url=${event.target.value}` : '';

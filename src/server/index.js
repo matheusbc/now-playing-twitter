@@ -4,6 +4,7 @@ const request = require('request');
 
 const app = express();
 
+// The twitter API client object.
 const client = new Twitter({
   consumer_key: 'CXVNsTDohsJaIxl0cjpuLKXYr',
   consumer_secret: 'Y49dNi2NPN9vJaPS95QnRLslOqisEuC7v934lHOfN05cVjbtDB\n',
@@ -11,6 +12,10 @@ const client = new Twitter({
 });
 
 app.use(express.static('dist'));
+
+// Get request to retrieve #nowplaying tweets with youtube video from people near the user location.
+// - parameter location: The user location (latitude,longitude,range).
+// - returns: The list with the last five tweets.
 app.get('/api/search/tweets', (req, res) => {
   client.get('search/tweets', {
     q: '#nowplaying AND youtube.com,exclude:retweets',
@@ -23,6 +28,10 @@ app.get('/api/search/tweets', (req, res) => {
     res.send({ tweets });
   });
 });
+
+// Get request to retrieve a youtube video id from an twitter short url.
+// - parameter url: The twitter short url.
+// - returns: The youtube video id.
 app.get('/api/unshortener/youtubetco', (req, res) => {
   request({ url: req.query.url, followRedirect: false }, (error, response, body) => {
     if (response.statusCode >= 300 && response.statusCode < 400) {
@@ -35,6 +44,9 @@ app.get('/api/unshortener/youtubetco', (req, res) => {
 
 app.listen(8080, () => console.log('Listening on port 8080!'));
 
+// Gets the video id from youtube url (including shortened urls).
+// parameter url: The youtube url (can be shortened).
+// returns: The youtube video id.
 function youtubeId(url) {
   const regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/;
   const match = url.match(regExp);

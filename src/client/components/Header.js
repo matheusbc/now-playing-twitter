@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import '../app.css';
 
+// Header class that shows the application header with the user city name.
 export default class Header extends Component {
   constructor(props) {
     super(props);

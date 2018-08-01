@@ -42,6 +42,11 @@ app.get('/api/unshortener/youtubetco', (req, res) => {
   });
 });
 
+// Send any other requests to react index file.
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname+'/dist/index.html'));
+});
+
 app.listen(8080, () => console.log('Listening on port 8080!'));
 
 // Gets the video id from youtube url (including shortened urls).

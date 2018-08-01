@@ -6,7 +6,7 @@ import TweetForm from './components/TweetForm';
 import TweetBlock from './components/TweetBlock';
 
 // Initialize the google geocoding library. Should pass a valid google API-Key as parameter.
-Geocoder.init('AIzaSyCQM7O58Zdv9qGWWYF4cppIu2kofpV3olw');
+Geocoder.init('AIzaSyC4ZXOxSwv620lvYJH78-waFubFy2ubaB0');
 
 // The main component that shows the main page.
 export default class App extends Component {

@@ -4,6 +4,8 @@ const request = require('request');
 
 const app = express();
 
+app.set('port', (process.env.PORT || 8080));
+
 // The twitter API client object.
 const client = new Twitter({
   consumer_key: 'CXVNsTDohsJaIxl0cjpuLKXYr',
@@ -47,7 +49,7 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname+'/dist/index.html'));
 });
 
-app.listen(8080, () => console.log('Listening on port 8080!'));
+app.listen(app.get('port'), () => console.log('Listening on port 8080!'));
 
 // Gets the video id from youtube url (including shortened urls).
 // parameter url: The youtube url (can be shortened).

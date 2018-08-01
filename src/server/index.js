@@ -9,7 +9,7 @@ app.set('port', (process.env.PORT || 8080));
 // The twitter API client object.
 const client = new Twitter({
   consumer_key: 'CXVNsTDohsJaIxl0cjpuLKXYr',
-  consumer_secret: 'Y49dNi2NPN9vJaPS95QnRLslOqisEuC7v934lHOfN05cVjbtDB\n',
+  consumer_secret: 'Y49dNi2NPN9vJaPS95QnRLslOqisEuC7v934lHOfN05cVjbtDB',
   bearer_token: 'AAAAAAAAAAAAAAAAAAAAAH3eawAAAAAA0zC%2BvWRRiTPyQUiMU2Zl59yOdfk%3DECQQdP5dVANyvH62RNhHioT4culhhqLhCTE5TsAMhqbd39HI1Z'
 });
 
